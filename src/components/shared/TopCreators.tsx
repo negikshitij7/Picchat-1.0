@@ -14,9 +14,9 @@ const TopCreators = () => {
     }
 
   return (
-     <div className='hidden md:flex flex-col gap-3 items-center min-w-[100px] lg:min-w-[360px] overflow-scroll custom-scrollbar '>
+     <div className='hidden md:flex flex-col gap-3 items-center min-w-[100px] lg:max-w-[360px] lg:min-w-[180px] overflow-scroll custom-scrollbar p-4'>
          <h2 className='h3-bold'>Top Creators</h2>
-           <ul className='flex flex-col gap-3 lg:flex-row lg:justify-between lg:gap-8 '>
+           <ul className='flex md:flex-col gap-3 lg:grid lg:grid-cols-2 lg:gap-6 '>
            {users?.documents.map((user)=>(
 
             <UserCard user={user} key={user.$id}/>
