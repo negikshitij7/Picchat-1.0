@@ -1,8 +1,6 @@
 import ProfileForm from '@/components/form/ProfileForm';
 import { useGetUserById } from '@/lib/react-query/queriesAndMutations';
-import { Models } from 'appwrite'
 import { Loader } from 'lucide-react';
-import React from 'react'
 import { useParams } from 'react-router-dom'
 
 const UpdateProfile = () => {
@@ -23,7 +21,7 @@ const UpdateProfile = () => {
        <h2 className='h3-bold md:h2-bold text-left w-full'>Edit Profile</h2>
 
      </div>
-      <ProfileForm user={user}/>
+      {user &&<ProfileForm user={user}/>}
     </div>
      </div>
   )

@@ -12,7 +12,8 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
 
     const [fileUrl, setFileUrl] = useState(mediaUrl)
     const [file, setFile] = useState<File[]>([])
-
+     
+     console.log(file)
     const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
         setFile(acceptedFiles)
         fieldChange(acceptedFiles)

@@ -1,5 +1,4 @@
 import { Models } from 'appwrite'
-import React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -8,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,10 +14,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { profileFormSchema } from '@/lib/validation'
-import { Profile } from '@/_root/pages'
 import ProfileUploader from '../shared/ProfileUploader'
 import { Textarea } from '../ui/textarea'
-import { updateProfile } from '@/lib/appwrite/api'
 import { useUpdateProfile } from '@/lib/react-query/queriesAndMutations'
 import { toast } from '../ui/use-toast'
 import { useNavigate } from 'react-router-dom'
@@ -30,7 +26,7 @@ type profileFormProps={
 
 
 const ProfileForm = (user:profileFormProps) => {
-     const {mutateAsync:updateProfile,isPending:isLoadingUpdate}  =useUpdateProfile(); 
+     const {mutateAsync:updateProfile}  =useUpdateProfile(); 
       const navigate =useNavigate()
 
       const form = useForm<z.infer<typeof profileFormSchema>>({
