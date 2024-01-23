@@ -13,8 +13,8 @@ type PostStatsProps={
 const PostStats = ({post,userId}:PostStatsProps) => {
 
  const {mutate:likePost}=useLikePost()
- const {mutate:savePost,isPending:isSavingPost}=useSavePost()
- const {mutate:deleteSavedPost,isPending:isDeletingPost}=useDeleteSavedPost()
+ const {mutate:savePost,isLoading:isSavingPost}=useSavePost()
+ const {mutate:deleteSavedPost,isLoading:isDeletingPost}=useDeleteSavedPost()
  const {data:currentUser}=useGetCurrentUser(); 
 
 

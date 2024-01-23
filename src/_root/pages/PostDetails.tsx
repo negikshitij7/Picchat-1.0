@@ -14,8 +14,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 const PostDetails = () => {
   const { id } = useParams();
 
-  const { data: post, isPending: isLoadingDetails } = useGetPostById(id || '');
-  const { data: userOfPost, isPending: isLoadingUser } = useGetUserById(post?.user.$id || '');
+  const { data: post, isLoading: isLoadingDetails } = useGetPostById(id || '');
+  const { data: userOfPost, isLoading: isLoadingUser } = useGetUserById(post?.user.$id || '');
   const {user}=useUserContext();
   const {mutateAsync:deletePost}=useDeletePost();
   const navigate=useNavigate()

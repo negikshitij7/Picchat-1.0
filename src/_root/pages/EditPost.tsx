@@ -8,10 +8,10 @@ const EditPost = () => {
   //get the post id 
   const {id}=useParams();
   // now get the existing post that we have to update
-  const {data:post,isPending}=useGetPostById(id || '');
+  const {data:post,isLoading}=useGetPostById(id || '');
 
   
-  if(isPending) return <Loader/>
+  if(isLoading) return <Loader/>
   return (
     <div className='flex flex-1'>
      <div className="common-container">

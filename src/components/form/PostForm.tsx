@@ -28,8 +28,8 @@ type PostFormProps={
 const PostForm = ({post,action}: PostFormProps) => {
     
   console.log(post);
-    const {mutateAsync: createPost,isPending: isLoadingCreate}=useCreatePost();
-    const {mutateAsync:updatePost,isPending:isLoadingUpdate}=useUpdatePost();  
+    const {mutateAsync: createPost,isLoading: isLoadingCreate}=useCreatePost();
+    const {mutateAsync:updatePost,isLoading:isLoadingUpdate}=useUpdatePost();  
     
 
     const {user}=useUserContext()
