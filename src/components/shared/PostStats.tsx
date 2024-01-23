@@ -36,12 +36,12 @@ const handleLikes=(e: React.MouseEvent)=>{
 
         let newlikes=[...likes];
         // if already liked then dislike else like
-        if(newlikes.includes(userId))
+        if(newlikes.includes(currentUser?.$id))
         {
-            newlikes=newlikes.filter((id)=>id !== userId)
+            newlikes=newlikes.filter((id)=>id !== currentUser?.$id)
         }
         else{
-            newlikes.push(userId)
+            newlikes.push(currentUser?.$id)
         }
  
        setLikes(newlikes)
