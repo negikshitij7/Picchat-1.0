@@ -1,4 +1,3 @@
-import ProfileForm from '@/components/form/ProfileForm';
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +16,6 @@ import { useUserContext } from "@/context/AuthContext";
 import { useNavigate, useParams } from 'react-router-dom';
 import { profileFormSchema } from '@/lib/validation';
 import { useGetUserById, useUpdateProfile } from '@/lib/react-query/queriesAndMutations';
-import { updateProfile } from '@/lib/appwrite/api';
 import { Input } from '@/components/ui/input';
 import Loader from '@/components/shared/Loader';
 import ProfileUploader from '@/components/shared/ProfileUploader';
@@ -27,7 +25,7 @@ const UpdateProfile = () => {
  const {id}=useParams();
  const {toast}=useToast()
  const navigate=useNavigate()
- const {data:curruser,isFetching}=useGetUserById(id || '')
+ const {data:curruser}=useGetUserById(id || '')
  const {user,setUser}=useUserContext()
  if(!curruser || curruser==undefined){
   return(
@@ -45,7 +43,7 @@ const UpdateProfile = () => {
   }
 })
 
-const {mutateAsync:updateProfile,isLoading:isLoadingUpdate}=useUpdateProfile()
+const {mutateAsync:updateProfile}=useUpdateProfile()
 
  async function onSubmit(values:z.infer<typeof profileFormSchema>){
 
