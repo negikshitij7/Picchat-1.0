@@ -476,7 +476,7 @@ try {
 export async function updateProfile(profile:IUpdateProfile){
 
 const isDpChanged=profile.file.length>0;
-
+console.log(profile.file[0])
 try {
  
   let image={

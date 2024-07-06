@@ -20,9 +20,7 @@ export const PostValidation = z.object({
   })
 
 export const profileFormSchema=z.object({
-  name:z.string().min(2).max(22),
   file: z.custom<File[]>(),
   username:z.string().min(2).max(22),
-  email:z.string().email(),
   bio:z.string().min(0)
 })  

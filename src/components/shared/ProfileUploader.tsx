@@ -1,9 +1,10 @@
 
-import  { useCallback, useState } from 'react'
+import { convertFileToUrl } from '@/lib/utils';
+import  { useCallback, useEffect, useState } from 'react'
 import { FileWithPath, useDropzone } from 'react-dropzone'
 
 type ProfileUploaderProps = {
-    fieldChange: (FILES: File[]) => void;
+    fieldChange: (FILE: File[]) => void;
     mediaUrl: string;
 }
 
@@ -12,13 +13,23 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
 
     const [fileUrl, setFileUrl] = useState(mediaUrl)
     const [file, setFile] = useState<File[]>([])
-     
-     console.log(file)
+ 
+    useEffect(()=>{
+        return()=>{
+            if(fileUrl && fileUrl!=mediaUrl){
+                URL.revokeObjectURL(fileUrl)
+            }
+        }
+    },[fileUrl,mediaUrl])
+
+     console.log(`The file url is now ${fileUrl}`)
     const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
-        setFile(acceptedFiles)
+        console.log(`The accepted files are ${acceptedFiles[0].name}`)
+        setFile([acceptedFiles[0]])
+        const objectUrl=convertFileToUrl(acceptedFiles[0])
         fieldChange(acceptedFiles)
-        setFileUrl(URL.createObjectURL(acceptedFiles[0]))
-    }, [])
+        setFileUrl(objectUrl)
+    }, [file])
     const { getRootProps, getInputProps  } = useDropzone(
         {
             onDrop,
@@ -32,8 +43,8 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
             <input {...getInputProps()} />
             {fileUrl ?
                 (
-                    <div className=' bg-dark-4 rounded  flex flex-col p-6 gap-2 items-center hover:cursor-pointer'>
-                       <img src={fileUrl} alt="profile image" className='rounded-full h-44 w-44 hover:opacity-60'/>
+                    <div className=' rounded-full  flex flex-col p-6 gap-2 items-center hover:cursor-pointer'>
+                       <img src={fileUrl} alt="profile image" className='rounded-full h-48 w-48 hover:opacity-60'/>
                        <p>Click or Drag files to upload</p>
                     </div>
                 )

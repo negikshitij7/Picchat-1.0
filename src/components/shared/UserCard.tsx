@@ -8,7 +8,6 @@ type userCardProps={
 
 const UserCard = (user:userCardProps) => {
  
-  console.log(user)
     return (
 
     <Link to={`/profile/${user.user.$id}`} className='cursor-pointer'>    
